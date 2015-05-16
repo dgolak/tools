@@ -1,0 +1,3 @@
+
+gcc -c mydll.c
+gcc -shared mydll.o -Wall -L c:/gcc/lib -o mydll.exe
