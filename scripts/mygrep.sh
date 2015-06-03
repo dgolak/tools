@@ -56,8 +56,32 @@ if [ $argc -lt 3  ]
     echo -e "$LIGHT_GREEN[INFO]$GREEN Searching "$CYAN"ADDRESS IP"$GREEN"...\t\t\t["$url"]$NC"
     strings -a -e{b,l} $1|grep -i -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" --color=always
 
+    #search port
+    url=$(strings -a -e{b,l} $1|grep -i -E "port" --color=always|wc -l)
+    if [ $url -eq 0 ]
+    then
+	url="Not found";
+    else
+	url="Found "$url;
+    fi
+    echo -e "$LIGHT_GREEN[INFO]$GREEN Searching "$CYAN"PORT"$GREEN"...\t\t\t["$url"]$NC"
+    strings -a -e{b,l} $1|grep -i -E "port" --color=always
+
+
+    #search host
+    url=$(strings -a -e{b,l} $1|grep -i -E "host" --color=always|wc -l)
+    if [ $url -eq 0 ]
+    then
+	url="Not found";
+    else
+	url="Found "$url;
+    fi
+    echo -e "$LIGHT_GREEN[INFO]$GREEN Searching "$CYAN"HOST"$GREEN"...\t\t\t["$url"]$NC"
+    strings -a -e{b,l} $1|grep -i -E "host" --color=always
+
+
     # search password
-    url=$(strings -a -e{b,l} $1|grep -i -E "password" --color=always|wc -l)
+    url=$(strings -a -e{b,l} $1|grep -i -E "port" --color=always|wc -l)
     if [ $url -eq 0 ]
     then
 	url="Not found";
