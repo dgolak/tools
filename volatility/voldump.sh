@@ -6,7 +6,9 @@
 
 
 for vm in $(vboxmanage list runningvms|awk '{print $1}'|sed -e 's/"//g'); do
-    echo -e "\n Dumping $vm..."
+    echo -e "\n-Dumping $vm ..."
+    vboxmanage debugvm $vm dumpguestcore --filename "$vm.elf"
+
     imageinfo=$(vol.py -f "$vm.elf" imageinfo|grep "Suggested Profile"|awk '{print $4}'|sed -e 's/,//g');
     echo -e "Image - $vm\n--------------------\n";
     echo "vol.py -f $vm.elf --profile=$imageinfo pslist"
