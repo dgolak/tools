@@ -42,7 +42,7 @@ def main(args):
   imm.setBreakpointOnName("kernel32.TerminateThread")
   imm.setBreakpointOnName("kernel32.ResumeThread")
   imm.setBreakpointOnName("kernel32.SuspendThread")
-  imm.setBreakpointOnName("kernel32.Sleep")  #sleep stuff
+  imm.setBreakpointOnName("kernel32.Sleep")
   imm.setBreakpointOnName("kernel32.SleepEx")
 
   #file operation
@@ -91,5 +91,17 @@ def main(args):
   imm.setBreakpointOnName("advapi32.RegSetValueExA")
   imm.setBreakpointOnName("advapi32.RegSetValueW")
   imm.setBreakpointOnName("advapi32.RegSetValueA")
+
+  #http connection
+  """
+  imm.setBreakpointOnName("Wininet.InternetWriteFile")
+  imm.setBreakpointOnName("Wininet.InternetOpenURL")
+  imm.setBreakpointOnName("wininet.HttpOpenRequestW")
+  imm.setBreakpointOnName("wininet.HttpOpenRequestA")
+  imm.setBreakpointOnName("Wininet.HttpSendRequestA")
+  imm.setBreakpointOnName("Wininet.HttpSendRequestW")
+  imm.setBreakpointOnName("Wininet.HttpSendRequestExW")
+  imm.setBreakpointOnName("Wininet.HttpSendRequestExA")
+  """
 
   return "Set mybreakpoints..."
