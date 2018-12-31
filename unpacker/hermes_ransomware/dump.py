@@ -1,4 +1,4 @@
-
+import os
 import sys
 import time
 import winappdbg
@@ -134,7 +134,8 @@ def simple_debugger(filename):
   except:
     traceback.print_exc()
   with winappdbg.Debug(handler,bKillOnExit = True) as debug:
-    debug.execl(filename)
+    abspath = os.path.abspath(filename)
+    debug.execl(os.path.join(os.path.dirname(abspath), filename))
     debug.loop()
 
 simple_debugger(sys.argv[1])
