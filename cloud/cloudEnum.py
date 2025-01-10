@@ -3,14 +3,14 @@ import sys
 import xml.etree.ElementTree as ET
 
 
-
-class AmazonAws():
+class CloudEnum():
 
     def __init__(self):
-        self.fullList=[]
-        self.arrList=["dev","prod","staging"]
+        self.fullList = []
+        self.arrList = ["dev","prod","staging"]
         self.filenames = []
         self.spaceExistsList = []
+
     def prepareFullList(self, name):
         # amazon cloud
         domain = ".s3.amazonaws.com"
@@ -56,7 +56,7 @@ class AmazonAws():
     def enum(self, name):
         self.prepareFullList(name)
         for i in self.fullList:
-            ret = self.askAws(i)
+            ret = self.askClouds(i)
             if ret != False:
                 self.parseResult(ret)
 
@@ -67,7 +67,7 @@ class AmazonAws():
         for key in keys:
             self.filenames.append(self.currentName + "/" + key.text)
 
-    def askAws(self,name):
+    def askClouds(self,name):
         self.currentName = "https://" + name
         try:
             ret = req.get(self.currentName)
@@ -96,15 +96,17 @@ class AmazonAws():
         print("\n-------------------\nExisted spaces:")
         for i in self.spaceExistsList:
             print(i)
-AWS = AmazonAws()
-#AWS.loadList()
-AWS.enum(sys.argv[1])
-if sys.argv[2]:
-    include = sys.argv[2]
-else:
-    include = ""
-AWS.showFiles(include)
-AWS.showSpaces()
+Cloud = CloudEnum()
+Cloud.enum(sys.argv[1])
+
+try:
+	if sys.argv[2]:
+	    include = sys.argv[2]
+except:
+	include = ""
+
+Cloud.showFiles(include)
+Cloud.showSpaces()
 
 
 
