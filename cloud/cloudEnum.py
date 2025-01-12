@@ -1,13 +1,15 @@
 import requests as req
 import sys
 import xml.etree.ElementTree as ET
-
+"""
+    @Author:Dawid Golak
+"""
 
 class CloudEnum():
 
     def __init__(self):
         self.fullList = []
-        self.arrList = ["dev","prod","staging"]
+        self.arrList = []
         self.filenames = []
         self.spaceExistsList = []
 
@@ -85,7 +87,7 @@ class CloudEnum():
     def loadList(self):
         self.arrList=['access', 'admin', 'ai', 'alpha', 'america', 'analytics', 'ansible', 'apac', 'api', 'app', 'application', 'archive', 'archives', 'asia', 'asset', 'assets', 'assets-cache', 'audio', 'audit', 'auth', 'aws', 'backup', 'beta', 'bucket', 'build', 'business', 'cache', 'canada', 'cdn', 'cdn-cache', 'china', 'cloud', 'cluster', 'compliance', 'config', 'core', 'current', 'data', 'datasets', 'db', 'de', 'demo', 'dept', 'design', 'dev', 'developer', 'development', 'dns', 'docs', 'download', 'downloads', 'dump', 'emea', 'encrypted', 'engineering', 'eu', 'europe', 'ext', 'external', 'file', 'files', 'fileshare', 'finance', 'fr', 'general', 'group', 'historical', 'hotfix', 'hr', 'image', 'insights', 'integration', 'internal', 'iot', 'jp', 'lambda', 'latest', 'legacy', 'legal', 'local', 'logs', 'marketing', 'media', 'microservices', 'mirror', 'ml', 'module', 'my', 'net', 'new', 'nightly', 'northamerica', 'nosql', 'old', 'operations', 'patch', 'pipeline', 'pipelines', 'pl', 'previous', 'private', 'processed', 'prod', 'production', 'project', 'protected', 'proxy', 'public', 'public-read', 'public-write', 'qa', 'queue', 'raw', 'readonly', 'readwrite', 'region1', 'region2', 'release', 'reports', 'restricted', 'sales', 'sandbox', 'secure', 'service', 'session', 'share', 'snapshots', 'southamerica', 'sql', 'stage', 'staging', 'static', 'storage', 'support', 'sync', 'tables', 'team', 'temp', 'test', 'testing', 'transfer', 'uat', 'uk', 'upload', 'uploads', 'us', 'v1', 'v2', 'v3', 'v4', 'version1', 'version2', 'video', 'web', 'workflow']
 
-    def showFiles(self, include):
+    def showFiles(self, include=""):
         print("\n-------------------\nExisted files:")
 
         for i in self.filenames:
@@ -100,12 +102,12 @@ Cloud = CloudEnum()
 Cloud.enum(sys.argv[1])
 
 try:
-	if sys.argv[2]:
-	    include = sys.argv[2]
+    if sys.argv[2]:
+        incl = sys.argv[2]
 except:
-	include = ""
+	incl = ""
 
-Cloud.showFiles(include)
+Cloud.showFiles(incl)
 Cloud.showSpaces()
 
 
